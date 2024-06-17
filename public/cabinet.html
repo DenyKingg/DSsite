@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <style>
+      #passwordField {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to your Dashboard!</h1>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Your Code:</strong> <span id="code"></span></p>
+    <p><strong>Balance:</strong> <span id="balance"></span></p>
+    <p>
+      <strong>Password:</strong>
+      <span id="passwordField"></span>
+      <button id="showPassword">Show Password</button>
+    </p>
+    <script>
+      const username = new URLSearchParams(window.location.search).get(
+        "username"
+      );
+
+      fetch(`/cabinetData?username=${encodeURIComponent(username)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          document.getElementById("username").textContent = data.username;
+          document.getElementById("code").textContent = data.code;
+          document.getElementById("balance").textContent = data.balance;
+        })
+        .catch((error) => {
+          console.error("Error fetching dashboard data:", error);
+          alert(
+            "Error loading dashboard data. Please try again later."
+          );
+        });
+
+      document.getElementById("showPassword").addEventListener("click", () => {
+        fetch("/users")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+          })
+          .then((users) => {
+            const user = users.find((user) => user.username === username);
+            if (user) {
+              document.getElementById("passwordField").textContent =
+                user.password;
+              document.getElementById("passwordField").style.display = "inline";
+            } else {
+              alert("Password not found");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user list:", error);
+            alert(
+              "Error loading user list. Please try again later."
+            );
+          });
+      });
+    </script>
+  </body>
+</html>

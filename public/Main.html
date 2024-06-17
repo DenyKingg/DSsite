@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration and Login</title>
+    <style>
+      .form-container {
+        display: none;
+      }
+      .form-container.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Registration and Login</h2>
+    <div id="registerFormContainer" class="form-container active">
+      <h3>Registration</h3>
+      <form id="registerForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <br />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <br />
+        <button type="submit">Register</button>
+      </form>
+      <p>
+        Already have an account?
+        <a href="#" id="showLoginForm">Login</a>
+      </p>
+    </div>
+
+    <div id="loginFormContainer" class="form-container">
+      <h3>Login</h3>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required />
+        <br />
+        <label for="loginPassword">Password:</label>
+        <input
+          type="password"
+          id="loginPassword"
+          name="loginPassword"
+          required
+        />
+        <br />
+        <button type="submit">Login</button>
+      </form>
+      <p>
+        Don't have an account?
+        <a href="#" id="showRegisterForm">Register</a>
+      </p>
+    </div>
+
+    <script>
+      document
+        .getElementById("showLoginForm")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document
+            .getElementById("registerFormContainer")
+            .classList.remove("active");
+          document.getElementById("loginFormContainer").classList.add("active");
+        });
+
+      document
+        .getElementById("showRegisterForm")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document
+            .getElementById("loginFormContainer")
+            .classList.remove("active");
+          document
+            .getElementById("registerFormContainer")
+            .classList.add("active");
+        });
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const usernameRegex = /^[a-zA-Z0-9]{5,12}$/;
+
+          if (!usernameRegex.test(username)) {
+            alert(
+              "Username must be 5 to 12 characters long and contain only letters or numbers."
+            );
+            return;
+          }
+
+          if (password.length < 5 || password.length > 16) {
+            alert("Password must be 5 to 16 characters long.");
+            return;
+          }
+
+          fetch("http://localhost:3000/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = `/cabinet?username=${username}`;
+              } else {
+                return response.text().then((text) => {
+                  throw new Error(text);
+                });
+              }
+            })
+            .catch((error) => alert(error.message));
+        });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("loginUsername").value;
+          const password = document.getElementById("loginPassword").value;
+
+          fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = `/cabinet?username=${username}`;
+              } else {
+                return response.text().then((text) => {
+                  throw new Error(text);
+                });
+              }
+            })
+            .catch((error) => alert(error.message));
+        });
+    </script>
+  </body>
+</html>

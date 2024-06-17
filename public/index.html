@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/styl/style.css" />
+    <style>
+      .container {
+        position: absolute;
+        width: 1920px;
+        height: 172px;
+        left: 0px;
+        top: 0px;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0.3;
+        display: flex; /* Flex-контейнер */
+        justify-content: flex-start; /* Выравнивание элементов влево */
+        align-items: center; /* Выравнивание по вертикали по центру */
+      }
+      .img4 {
+        max-width: 100%;
+        height: auto;
+        margin-left: 1800px; /* Отступ слева */
+        transition: transform 0.3s ease; /* Плавная анимация трансформации */
+      }
+      .img4:hover {
+        transform: scale(1.1); /* Увеличение размера при наведении */
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="video">
+      <video src="static/images/bist.mp4" autoplay muted loop></video>
+    </section>
+    <img class="img1" src="static/images/DS_1-Photoroom1 1.png" alt="" />
+    <a href="https://discord.gg/SRGMH6Gb"
+      ><img class="img2" src="static/images/pngwing 2.png" alt=""
+    /></a>
+    <a href="https://www.tiktok.com/@d.s_company?_t=8n8rGPS2ctd&_r=1"
+      ><img class="img3" src="static/images/pngwing 3.png" alt=""
+    /></a>
+    <div class="container">
+      <img class="img4" src="static/images/l.png" alt="" id="registerImage" />
+    </div>
+    <div class="nav">
+      <ul>
+        <a class="a1" href="index.html">Main</a>
+        <li></li>
+        <a class="a2" href="price.html">Price</a>
+        <li></li>
+        <a class="a3" href="#">FAQ</a>
+        <li></li>
+      </ul>
+    </div>
+
+    <script>
+      document
+        .getElementById("registerImage")
+        .addEventListener("click", function () {
+          window.location.href = "Main.html";
+        });
+    </script>
+  </body>
+</html>

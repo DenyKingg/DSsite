@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Podkova";
+}
+
+.container {
+  position: absolute;
+  width: 1920px;
+  height: 172px;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.3;
+  display: flex; /* Добавлено для создания flex-контейнера */
+  justify-content: flex-end; /* Добавлено для выравнивания элементов вправо */
+  align-items: center; /* Добавлено для выравнивания по вертикали по центру */
+}
+
+.img4 {
+  max-width: 100%;
+  height: auto;
+  margin-left: 20px; /* Отступ слева в 20px */
+}
+.a1 {
+  /* Main */
+
+  position: absolute;
+  width: 347px;
+  height: 155px;
+  left: 302px;
+  top: 2px;
+
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 140px;
+  line-height: 155px;
+
+  color: #9bffa5;
+}
+
+.a2 {
+  /* Price */
+
+  position: absolute;
+  width: 345px;
+  height: 155px;
+  left: 788px;
+  top: 6px;
+
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 140px;
+  line-height: 155px;
+
+  color: #f0f0f0;
+}
+
+.a3 {
+  /* FAQ */
+
+  position: absolute;
+  width: 260px;
+  height: 155px;
+  left: 1311px;
+  top: 9px;
+
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 140px;
+  line-height: 155px;
+
+  color: #ececec;
+}
+
+a {
+  text-decoration: none;
+}
+
+.img1 {
+  /* DS_1-Photoroom1 1 */
+
+  position: absolute;
+  width: 504px;
+  height: 727px;
+  left: 679px;
+  top: 200px;
+
+  background: url(DS_1-Photoroom1.png);
+}
+
+.img2 {
+  /* pngwing 2 */
+
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 1702px;
+  top: 991px;
+
+  background: url(pngwing.png);
+}
+
+.img3 {
+  /* pngwing 3 */
+
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 1800px;
+  top: 991px;
+
+  background: url(pngwing);
+}
+
+.a1:hover {
+  color: #4e9254;
+  transition: all 200ms ease;
+}
+.a2:hover {
+  color: #a2a2a2;
+  transition: all 200ms ease;
+}
+.a3:hover {
+  color: #a2a2a2;
+  transition: all 200ms ease;
+}
+
+.img1:hover {
+  transform: scale(1.1);
+  transition: all 500ms ease;
+}
+
+.img2:hover {
+  transform: translateY(-10px);
+  transition: all 500ms ease;
+}
+
+.img3:hover {
+  transform: translateY(-10px);
+  transition: all 500ms ease;
+}
+
+h1 {
+  /* 7 Days - 5 $ 30 Days - 18 $ 60 Days - 35 $ */
+  display: flex;
+  position: relative;
+  width: 476px;
+  height: 258px;
+
+  color: #ffffff;
+}
+
+
